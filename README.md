@@ -1,2 +1,2 @@
 # Peru-dengue-benchmark
-Benchmakr of weekly dengue cases forecasting in Peru
+Benchmark of weekly dengue cases forecasting in Peru
