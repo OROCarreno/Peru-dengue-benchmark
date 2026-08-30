@@ -56,14 +56,9 @@ def RandomForest():
         error_train_min.append(error_train)
         error_val_min.append(error_val)
 
-    # plt.title('Train x Validation metrics')
-    # plt.xlabel('min sample list')
-    # plt.ylabel('MAE')
-    # plt.xticks(ticks = range(len(min_samples_split_list )),labels=min_samples_split_list)
-    # plt.plot(error_train_min)
-    # plt.plot(error_val_min)
-    # plt.legend(['Train','Validation'])
-    # plt.show()
+    #Plotting to find out what value of mininum sample split gives the lowest value for validation data    
+    # plot_table('Train x Validation metrics','min sample list','MAE',min_samples_split_list,error_train_min,
+    #                    error_val_min,['Train','Validation'])
     ## lowest validation MAE is 10.
 
     for max_depth_value in max_depth_list:
@@ -75,14 +70,10 @@ def RandomForest():
         error_val = mean_absolute_error(y_val,prediction_val)
         error_train_depth.append(error_train)
         error_val_depth.append(error_val)
-    # plt.title('Train x Validation metrics')
-    # plt.xlabel('max depth')
-    # plt.ylabel('MAE')
-    # plt.xticks(ticks = range(len(max_depth_list )),labels=max_depth_list)
-    # plt.plot(error_train_depth)
-    # plt.plot(error_val_depth)
-    # plt.legend(['Train','Validation'])
-    # plt.show()
+
+    #Plotting to find out what value of maximum depth gives the lowest value for validation data    
+    # plot_table('Train x Validation metrics','max depth','MAE',max_depth_list,error_train_depth,
+    #                error_val_depth,['Train','Validation'])
     # lowest validation MAE is 8.
 
     for estimators in n_estimators_list:
@@ -93,25 +84,34 @@ def RandomForest():
         error_train = mean_absolute_error(y_train,prediction_train)
         error_val = mean_absolute_error(y_val,prediction_val)
         error_train_est.append(error_train) 
-        error_val_est.append(error_val) 
+        error_val_est.append(error_val)
 
-    # plt.title('Train x Validation metrics')
-    # plt.xlabel('estimators list')
-    # plt.ylabel('MAE')
-    # plt.xticks(ticks = range(len(n_estimators_list )),labels=n_estimators_list)
-    # plt.plot(error_train_min)
-    # plt.plot(error_val_min)
-    # plt.legend(['Train','Validation'])
-    # plt.show()
-    # lowest validation MAE is 8.
-    
-    # so with this values 
+    #Plotting to find out what value of number of estimators gives the lowest value for validation data     
+    # plot_table('Train x Validation metrics','estimators list','MAE',n_estimators_list,error_train_min,
+    #            error_val_min,['Train','Validation'])
+    #lowest number of estimators 50 
+
+
+    # So using these values
     random_forest_model = RandomForestRegressor(n_estimators = 50,
                                              max_depth = 8, 
                                              min_samples_split = 10).fit(x_train,y_train)
     print("RANDOM FOREST")
     print(f"MAE Train: {mean_absolute_error(random_forest_model.predict(x_train),y_train)} MAE val: {mean_absolute_error(random_forest_model.predict(x_val),y_val)}")
 
+
+def plot_table(title, xlable, ylabel, n_list, plot1, plot2, legend):
+    
+    plt.figure() 
+    plt.title(title)
+    plt.xlabel(xlable)
+    plt.ylabel(ylabel)
+    plt.xticks(ticks = range(len(n_list )),labels=n_list)
+    plt.plot(plot1)
+    plt.plot(plot2)
+    plt.legend(legend)
+    plt.show()
+    plt.close()
 
 def XGBoost_tree():
     xgb_model = XGBRegressor(n_estimators = 500, learning_rate = 0.05,early_stopping_rounds=10,verbosity = 1, random_state = RANDOM_STATE)
@@ -120,6 +120,6 @@ def XGBoost_tree():
     print("XGBoost ")
     print(f"MAE train: {mean_absolute_error(xgb_model.predict(x_train),y_train)}MEA val: {mean_absolute_error(xgb_model.predict(x_val),y_val)}")
 
-season_naive()
+# season_naive()
 RandomForest()
-XGBoost_tree()
+# XGBoost_tree()
