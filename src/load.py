@@ -8,8 +8,12 @@ def load_data() -> pd.DataFrame:
     Returns:
         Data with the features of: week, cases and 4 previous weeks. 
     """
+    # data = pd.read_csv(
+    #     "../data/peru_dengue_weekly_national.csv",
+    #     parse_dates=["week"]
+    # )
     data = pd.read_csv(
-        "../data/peru_dengue_weekly_national.csv",
+        "../data/malaysia_dengue_weekly_national.csv",
         parse_dates=["week"]
     )
 

@@ -99,7 +99,8 @@ def RandomForest():
     # So using these values
     random_forest_model = RandomForestRegressor(n_estimators = 50,
                                              max_depth = 8, 
-                                             min_samples_split = 10).fit(x_train,y_train)
+                                             min_samples_split = 10,
+                                             random_state = RANDOM_STATE).fit(x_train,y_train)
     # print("RANDOM FOREST")
     # print(f"MAE Train: {mean_absolute_error(random_forest_model.predict(x_train),y_train)} MAE val: {mean_absolute_error(random_forest_model.predict(x_val),y_val)}")
     return mean_absolute_error(random_forest_model.predict(x_test),y_test)
@@ -151,4 +152,4 @@ def Linear_regression():
 # season_naive()
 # RandomForest()
 # XGBoost_tree()
-Linear_regression()
+# Linear_regression()
