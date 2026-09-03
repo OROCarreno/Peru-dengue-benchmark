@@ -144,12 +144,3 @@ def Linear_regression():
     # plt.legend()
     # plt.show()
     return mean_absolute_error(reg.predict(x_test),y_test)
-
-    
-
-
-
-# season_naive()
-# RandomForest()
-# XGBoost_tree()
-# Linear_regression()

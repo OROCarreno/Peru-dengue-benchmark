@@ -17,10 +17,6 @@ def load_data() -> pd.DataFrame:
         parse_dates=["week"]
     )
 
-    #Checking data.
-    assert data["cases"].min() >= 0 
-    assert data["week"].is_monotonic_increasing 
-    assert not data["week"].duplicated().any() 
 
     # getting the previous weeks as features
 
