@@ -22,7 +22,7 @@ def season_naive():
     # print(f"MAE trainn: {mean_absolute_error(seasonNav_data_train["cases"], seasonNav_data_train["naive_pred"])} MAE val: {mean_absolute_error(seasonNav_data_val["cases"], seasonNav_data_val["naive_pred"])}")
     return mean_absolute_error(seasonNav_data_test["cases"],seasonNav_data_test["naive_pred"])
 
-
+season_naive()
 
 data_train,data_val,data_test = split_training_data()
 feature_colum = ["pre_week_1","pre_week_2","pre_week_3","pre_week_4"]
@@ -130,8 +130,6 @@ def XGBoost_tree():
 def Linear_regression():
     # Normalization is not neede because the values are close enough to each other.
     # No fine tunning needed bc there isn't overfitting.
-    ## reg2 = linear_model.Ridge(alpha=.5).fit(x_train,y_train)
-    ## print(f"MAE train: {mean_absolute_error(reg2.predict(x_train),y_train)}MEA val: {mean_absolute_error(reg2.predict(x_val),y_val)}")
 
     reg = linear_model.LinearRegression().fit(x_train,y_train)
     # print(f"MAE train: {mean_absolute_error(reg.predict(x_train),y_train)}MEA val: {mean_absolute_error(reg.predict(x_val),y_val)}")
@@ -144,3 +142,4 @@ def Linear_regression():
     # plt.legend()
     # plt.show()
     return mean_absolute_error(reg.predict(x_test),y_test)
+
